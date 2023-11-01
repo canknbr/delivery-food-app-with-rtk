@@ -5,9 +5,17 @@ import { featured } from "../constants";
 import { themeColors } from "../theme";
 import * as Icon from "react-native-feather";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
+import { selectRestaurant } from "../slices/restaurantSlice";
+import { emptyBasket } from "../slices/basketSlice";
 const DeliveryScreen = () => {
   const navigation = useNavigation();
-  const restaurant = featured.restaurants[0];
+  const restaurant = useSelector(selectRestaurant);
+  const dispatch = useDispatch();
+  const cancelOrder = () => {
+    navigation.navigate("Home");
+    dispatch(emptyBasket());
+  };
   return (
     <View className="flex-1">
       <StatusBar barStyle={"dark-content"} />
@@ -72,7 +80,7 @@ const DeliveryScreen = () => {
               />
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => navigation.navigate("Home")}
+              onPress={cancelOrder}
               className="p-4 rounded-full bg-white">
               <Icon.X stroke={"red"} strokeWidth={4} />
             </TouchableOpacity>
