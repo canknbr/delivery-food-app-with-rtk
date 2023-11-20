@@ -6,7 +6,7 @@ const PreparingOrderScreen = () => {
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate("Delivery");
-    }, 1500);
+    }, 5500);
   }, []);
   return (
     <View className="flex-1 bg-white justify-center items-center">
